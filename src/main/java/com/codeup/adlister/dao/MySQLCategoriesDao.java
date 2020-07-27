@@ -3,6 +3,7 @@ import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLCategoriesDao implements Categories {
@@ -23,7 +24,7 @@ public class MySQLCategoriesDao implements Categories {
 
     @Override
     public List<Category> listAll() {
-        List<Category> categories = null;
+        List<Category> categories = new ArrayList<>();
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("SELECT * FROM categories");
