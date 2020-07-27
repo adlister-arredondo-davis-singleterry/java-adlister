@@ -1,5 +1,7 @@
 USE team_adlister;
 
+DROP TABLE IF EXISTS ad_category;
+DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
 
