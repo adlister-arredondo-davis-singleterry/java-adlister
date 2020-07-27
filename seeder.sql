@@ -24,7 +24,7 @@ VALUES (1, 2, 'Holding the Door', 'I guess people can''t hold the door open anym
 INSERT INTO categories (id, name)
 VALUES (1, 'Adulting'),
        (2, 'Grammar'),
-       (3, 'Everybody''s Bad at Driving'),
+       (3, 'Traffic'),
        (4, 'Social Gatherings'),
        (5, 'Basic Etiquette'),
        (6, 'Family'),
@@ -32,6 +32,7 @@ VALUES (1, 'Adulting'),
 
 
 INSERT INTO ad_category (ad_id, category_id)
-VALUES (1, 1),
-       (1, 4),
-       (2, 3);
+VALUES (1, 5),
+       (2, 3),
+       (3, 6),
+       (4, 4);
