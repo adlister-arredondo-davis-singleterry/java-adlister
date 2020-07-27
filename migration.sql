@@ -1,4 +1,4 @@
-USE adlister_db;
+USE team_adlister;
 
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
@@ -8,7 +8,9 @@ CREATE TABLE users (
     username VARCHAR(240) NOT NULL,
     email VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    is_admin TINYINT UNSIGNED NOT NULL DEFAULT '0',
+    PRIMARY KEY (id),
+    UNIQUE KEY (username)
 );
 
 CREATE TABLE ads (
@@ -17,6 +19,18 @@ CREATE TABLE ads (
     title VARCHAR(240) NOT NULL,
     description TEXT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE categories (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(240) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ad_category (
+    ad_id INT UNSIGNED NOT NULL,
+    category_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (ad_id) REFERENCES ads (id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
 );
