@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -28,6 +29,14 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>
+        <div>
+            <c:if test="${invalidUsername}">
+                <small>Sorry, that username is already taken.</small>
+            </c:if>
+            <c:if test="${inputHasErrors}">
+                <small>Please make sure all fields are completed.</small>
+            </c:if>
+        </div>
     </div>
 </body>
 </html>
