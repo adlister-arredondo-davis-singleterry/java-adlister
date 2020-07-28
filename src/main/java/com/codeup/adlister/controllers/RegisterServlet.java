@@ -35,9 +35,9 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("invalidUsername", true);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         } else {
-            User newUser = new User (username, email, password);
-            DaoFactory.getUsersDao().insert(newUser);
-            request.getSession().setAttribute("user", newUser);
+            User user = new User (username, email, password);
+            DaoFactory.getUsersDao().insert(user);
+            request.getSession().setAttribute("user", DaoFactory.getUsersDao().findByUsername(username));
             response.sendRedirect("/profile");
         }
     }
