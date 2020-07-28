@@ -18,6 +18,7 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
+        request.setAttribute("categories", DaoFactory.getCategoriesDao().listAll());
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
             .forward(request, response);
     }
@@ -29,7 +30,10 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
+        Long num = DaoFactory.getAdsDao().insert(ad);
+        if (num > 0) {
+            DaoFactory.getCategoriesDao().insertAdCat(ad, request.getParameter("category"));
+        }
         response.sendRedirect("/ads");
     }
 }
