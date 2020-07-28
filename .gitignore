@@ -2,4 +2,5 @@
 target/
 .idea/
 Config.java
+database_setup.sql
 db_setup.sql
