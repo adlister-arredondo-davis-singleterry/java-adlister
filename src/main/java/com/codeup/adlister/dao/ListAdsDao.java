@@ -15,6 +15,10 @@ public class ListAdsDao implements Ads {
         return ads;
     }
 
+    public Ad findById(int id){
+        return all().get(id -1);
+    }
+
     public Long insert(Ad ad) {
         // make sure we have ads
         if (ads == null) {
