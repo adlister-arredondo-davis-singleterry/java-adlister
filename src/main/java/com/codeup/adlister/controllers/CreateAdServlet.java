@@ -20,20 +20,32 @@ public class CreateAdServlet extends HttpServlet {
         }
         request.setAttribute("categories", DaoFactory.getCategoriesDao().listAll());
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-        );
-        Long num = DaoFactory.getAdsDao().insert(ad);
-        if (num > 0) {
-            DaoFactory.getCategoriesDao().insertAdCat(ad, request.getParameter("category"));
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        boolean invalidAdInput =
+                title.isEmpty()
+                        || description.isEmpty();
+
+        if (invalidAdInput) {
+            request.setAttribute("inputIsNull", true);
+            request.setAttribute("categories", DaoFactory.getCategoriesDao().listAll());
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        } else {
+            Ad ad = new Ad(
+                    user.getId(),
+                    title,
+                    description
+            );
+            Long num = DaoFactory.getAdsDao().insert(ad);
+            if (num > 0) {
+                DaoFactory.getCategoriesDao().insertAdCat(ad, request.getParameter("category"));
+            }
+            response.sendRedirect("/ads");
         }
-        response.sendRedirect("/ads");
     }
 }
