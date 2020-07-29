@@ -28,6 +28,11 @@
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
+        <div>
+            <c:if test="${inputIsNull}">
+                <small>Input fields cannot be left blank.</small>
+            </c:if>
+        </div>
     </div>
 </body>
 </html>
