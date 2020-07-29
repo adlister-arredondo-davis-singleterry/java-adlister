@@ -14,6 +14,8 @@ public interface Ads {
     Ad findById(int id);
     // get a list of searched ads
     List<Ad> findAds(String keywords);
+    // get a list of ads based on ID
+    List<Ad> findAds(int id);
 
 // ======NEW CODE=============
     List<Ad> setCategoryWithAd(List<Ad> ad);
