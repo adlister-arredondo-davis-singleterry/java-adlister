@@ -12,7 +12,7 @@
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text">
+                <input id="title" name="title" class="form-control" type="text" maxlength="60" autofocus required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
