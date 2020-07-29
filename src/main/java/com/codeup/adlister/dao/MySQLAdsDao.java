@@ -56,7 +56,14 @@ public class MySQLAdsDao implements Ads {
     }
     @Override
     public Ad findById(int id){
-        return all().get(id -1);
+        List<Ad> allAds = all();
+        Ad selectedAd;
+        for (Ad ad : allAds) {
+            if(ad.getId() == id) {
+               return selectedAd = ad;
+            }
+        }
+        return null;
     }
 
     @Override

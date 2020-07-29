@@ -13,8 +13,10 @@
     </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
-<h1>${selectedAd.title}</h1>
-<p>${selectedAd.description}</p>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<div class="container">
+    <h1>${selectedAd.title}</h1>
+    <p>${selectedAd.description}</p>
+</div>
 </body>
 </html>
