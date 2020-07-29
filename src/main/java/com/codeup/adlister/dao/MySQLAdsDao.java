@@ -32,7 +32,7 @@ public class MySQLAdsDao implements Ads {
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads");
             ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
+            return setCategoryWithAd(createAdsFromResults(rs));//===NEW CODE===
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
@@ -111,4 +111,23 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+//===================NEW CODE=============================
+    @Override
+    public List<Ad> setCategoryWithAd(List<Ad> ad) {
+        List<Ad> ads;
+        PreparedStatement statement = null;
+        for (Ad x : ad) {
+            String query = "SELECT name FROM categories JOIN ad_category ON categories.id = ad_category.category_id JOIN ads ON ad_category.ad_id = ads.id WHERE ads.id = '" + x.getId() + "'";
+            try {
+                statement = connection.prepareStatement(query);
+                ResultSet rs = statement.executeQuery();
+                rs.next();
+                x.setCategory(rs.getString("name"));
+            } catch (SQLException e) {
+                throw new RuntimeException("Error adding category to ad.", e);
+            }
+        }
+        return ad;
+    }
+//    =======================================================
 }

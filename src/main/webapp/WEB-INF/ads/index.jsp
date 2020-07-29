@@ -16,6 +16,9 @@
             <div class="col-md-6">
                 <a href="/ad-info/show?id=${ad.id}"><h2><c:out value="${ad.title}"/></h2></a>
                 <p><c:out value="${ad.description}"/></p>
+                <%--=======New Code      =======          --%>
+                <p><strong>Category:</strong> ${ad.category}</p>
+                <%--=======New Code      =======          --%>
             </div>
     </c:forEach>
 </div>
