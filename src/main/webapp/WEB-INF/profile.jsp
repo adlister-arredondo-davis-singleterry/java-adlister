@@ -12,6 +12,14 @@
     <div class="container">
         <h1>Welcome, <c:out value="${sessionScope.user.username}"/>!</h1>
     </div>
-
+    <footer>
+        <form action="/profile" method="post">
+            <button type="submit"
+                    name="deleteButton"
+                    class="btn btn-primary ml-auto"
+                    value="${sessionScope.user.id}"
+            >Delete My Account</button>
+        </form>
+    </footer>
 </body>
 </html>

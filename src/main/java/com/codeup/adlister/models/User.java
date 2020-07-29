@@ -11,17 +11,19 @@ public class User {
 
     public User() {}
 
+    // this constructor is used to insert a new user /register
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        setPassword(password);
+        setPassword(password); // encrypt before insert
     }
 
+    // this constructor creates a User object from a users record (from DB)
     public User(long id, String username, String email, String password, int isAdmin) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.password = password; // already encrypted in DB
         this.isAdmin = isAdmin;
     }
 
@@ -49,19 +51,14 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public void setPassword(String password) {
-        this.password = Password.hash(password);
-    }
+    public void setPassword(String password) { this.password = Password.hash(password); }
 
     public int getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
-    }
+    public void setIsAdmin(int isAdmin) { this.isAdmin = isAdmin; }
+
 }
