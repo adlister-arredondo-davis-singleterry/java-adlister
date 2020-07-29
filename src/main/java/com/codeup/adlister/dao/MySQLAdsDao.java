@@ -84,9 +84,10 @@ public class MySQLAdsDao implements Ads {
     @Override
     public int getIdFromAd(String title) {
         PreparedStatement statement = null;
-        String query = "SELECT id FROM ads WHERE title = '" + title + "'";
+        String query = "SELECT id FROM ads WHERE title = ?";
         try {
             statement = connection.prepareStatement(query);
+            statement.setString(1, title);
             ResultSet rs = statement.executeQuery();
             rs.next();
             return rs.getInt("id");
@@ -111,7 +112,7 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
-//===================NEW CODE=============================
+
     @Override
     public List<Ad> setCategoryWithAd(List<Ad> ad) {
         List<Ad> ads;
@@ -129,5 +130,4 @@ public class MySQLAdsDao implements Ads {
         }
         return ad;
     }
-//    =======================================================
 }
