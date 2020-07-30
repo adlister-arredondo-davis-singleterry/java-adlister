@@ -27,43 +27,10 @@ public class ViewProfileServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String deleteUser = request.getParameter("deleteButton");
-        Long myId = parseLong(deleteUser);
 
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
-        }
-
-        if (deleteUser != null) {
-        String userInput = JOptionPane.showInputDialog(null,
-                "Are you sure you want to delete your account?\n" +
-                         "All Ads will be removed!\n\n" +
-                         "Type 'delete' to confirm:",
-                "Delete Account Confirmation", JOptionPane.QUESTION_MESSAGE);
-
-            // Get user confirmation before deleting account
-            if (userInput == null) {
-                // User clicked Cancel
-                response.sendRedirect("/profile");
-            } else if (userInput.equalsIgnoreCase("delete")) {
-                // User typed "delete"
-                DaoFactory.getUsersDao().delete(myId);
-                request.getSession().removeAttribute("user");
-                request.getSession().invalidate();
-                JOptionPane.showMessageDialog(null,
-                        "Account Deleted!",
-                        "Delete Account Confirmation", JOptionPane.INFORMATION_MESSAGE);
-                response.sendRedirect("/ads");
-            } else {
-                // User clicked OK but didn't type "delete"
-                JOptionPane.showMessageDialog(null,
-                        "Nothing was changed!\n" +
-                                 "The word 'delete' was not entered.",
-                        "Delete Account Failed", JOptionPane.WARNING_MESSAGE);
-                response.sendRedirect("/profile");
-            }
-
         } else {
             request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
         }
