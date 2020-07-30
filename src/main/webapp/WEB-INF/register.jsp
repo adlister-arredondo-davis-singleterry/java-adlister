@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password"  maxlength="60" required>
+                <input id="password" name="password" class="form-control" type="password" maxlength="60" required>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
