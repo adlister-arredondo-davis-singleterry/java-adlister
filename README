@@ -1,0 +1,19 @@
+Welcome to (m)AdLister!
+
+The (m)AdLister is a small scale Craigslist clone where users can post ads for items, but with a twist!
+
+Instead of posting your typical "for sale" or "wanted" ad, users can post topics about what annoys them, or drives them (m)Ad!
+
+The admin/user/visitor stories that have been implemented are:
+
+1. As a visitor, when I complete the registration form I expect/want to be told that I have successfully registered and be directed to a welcome screen.
+2. As a user, when I click on the forgot my password link I expect/want the ability to fill out my email address and have a password reset email that allows me to reset my password.
+3. As a user, I can create ads and they will be displayed in the main Ads list.
+4. As a user, I can edit the ads I created in the past.
+5. As a user, I can delete my own ads.
+6. As a visitor, I can see all the ads without registring.
+7. As a visitor, I can see registered user profiles.
+8. As an admin, I can delete and edit all posts.
+9. As an admin, I can manage users (Add, Delete, Update).
+
+Enjoy the application!
