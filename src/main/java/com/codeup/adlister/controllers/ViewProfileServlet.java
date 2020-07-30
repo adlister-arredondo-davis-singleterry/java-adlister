@@ -27,10 +27,41 @@ public class ViewProfileServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String deleteAd = request.getParameter("deleteAd");
+        Long adId = parseLong(deleteAd);
 
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
+        }
+
+        if (deleteAd != null) {
+            String userInput = JOptionPane.showInputDialog(null,
+                    "Are you sure you want to delete your post?\n" +
+                            "All content will be removed!\n\n" +
+                            "Type 'delete' to confirm:",
+                    "Delete Post Confirmation", JOptionPane.QUESTION_MESSAGE);
+
+            // Get user confirmation before deleting account
+            if (userInput == null) {
+                // User clicked Cancel
+                response.sendRedirect("/profile");
+            } else if (userInput.equalsIgnoreCase("delete")) {
+                // User typed "delete"
+                DaoFactory.getAdsDao().deleteAd(adId);
+                JOptionPane.showMessageDialog(null,
+                        "Post Deleted!",
+                        "Delete Post Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                response.sendRedirect("/ads");
+            } else {
+                // User clicked OK but didn't type "delete"
+                JOptionPane.showMessageDialog(null,
+                        "Nothing was changed!\n" +
+                                "The word 'delete' was not entered.",
+                        "Delete Post Failed", JOptionPane.WARNING_MESSAGE);
+                response.sendRedirect("/profile");
+            }
+
         } else {
             request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
         }
