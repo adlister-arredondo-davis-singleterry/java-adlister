@@ -12,18 +12,18 @@
 <div class="container">
     <h1>Welcome, <c:out value="${sessionScope.user.username}"/>!</h1>
     <h3>Here are the ads you have posted so far:</h3>
+    <a href="/user-settings"
     <c:forEach var="ad" items="${userAds}">
         <div class="card">
             <div class="col-md-6 card-body">
                 <h5 class="card-title"><c:out value="${ad.title}"/></h5>
                 <p class="card-text"><c:out value="${ad.description}"/></p>
                 <p><strong>Category:</strong> ${ad.category}</p>
-                <form action="" method="post">
-                    <button type="submit" class="btn btn-primary" value="${ad.id}">Edit</button>
-                </form>
-
                 <form action="/edit-ad" method="post">
-                    <button type="submit" class="btn btn-primary" value="${ad.id}">Delete</button>
+                    <button type="submit" class="btn btn-primary" name="editAd" value="${ad.id}">Edit</button>
+                </form>
+                <form action="/profile" method="post">
+                    <button type="submit" class="btn btn-primary" name="deleteAd" value="${ad.id}">Delete</button>
                 </form>
             </div>
         </div>

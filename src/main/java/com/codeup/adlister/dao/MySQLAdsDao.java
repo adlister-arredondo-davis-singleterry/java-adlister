@@ -55,7 +55,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
     @Override
-    public Ad findById(int id){
+    public Ad findById(Long id){
         List<Ad> allAds = all();
         Ad selectedAd;
         for (Ad ad : allAds) {
@@ -81,11 +81,11 @@ public class MySQLAdsDao implements Ads {
         }
     }
     @Override
-    public List<Ad> findAds(int id) {
+    public List<Ad> findAds(Long id) {
         String query = "SELECT * FROM ads JOIN users ON ads.user_id = users.id WHERE user_id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             return setCategoryWithAd(createAdsFromResults(rs));
         } catch (SQLException e) {
@@ -141,5 +141,31 @@ public class MySQLAdsDao implements Ads {
             }
         }
         return ad;
+    }
+
+    @Override
+    public void updateAd(Ad adToUpdate) {
+        String query = "UPDATE ads a JOIN ad_category ac ON ac.ad_id = a.id SET a.title = ?, a.description = ?, ac.category_id = ? WHERE a.id = ?;";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, adToUpdate.getTitle());
+            stmt.setString(2, adToUpdate.getDescription());
+            stmt.setInt(3, DaoFactory.getCategoriesDao().getIdByCategory(adToUpdate.getCategory()));
+            stmt.setLong(4, adToUpdate.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating your post.", e);
+        }
+    }
+
+    public boolean deleteAd(Long adId) {
+        String query = "DELETE FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, adId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting a user", e);
+        }
     }
 }
