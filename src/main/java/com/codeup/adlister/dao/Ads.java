@@ -11,12 +11,15 @@ public interface Ads {
     Long insert(Ad ad);
     int getIdFromAd(String title);
     // find Ad by ID
-    Ad findById(int id);
+    Ad findById(Long id);
     // get a list of searched ads
     List<Ad> findAds(String keywords);
     // get a list of ads based on ID
-    List<Ad> findAds(int id);
-
+    List<Ad> findAds(Long id);
+    // delete an ad
+    boolean deleteAd(Long id);
+    // updaate an ad
+    void updateAd(Ad adToBeUpdate);
 // ======NEW CODE=============
     List<Ad> setCategoryWithAd(List<Ad> ad);
 //    ==========================
