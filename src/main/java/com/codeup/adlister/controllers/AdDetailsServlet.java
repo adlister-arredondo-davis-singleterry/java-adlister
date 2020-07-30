@@ -19,6 +19,7 @@ public class AdDetailsServlet extends HttpServlet {
         Long adId = parseLong(adDetails);
 
         Ad thisAd = DaoFactory.getAdsDao().findById(adId);
+        thisAd.setCategory(DaoFactory.getCategoriesDao().getCategory(thisAd));
         req.setAttribute("selectedAd", thisAd);
         System.out.println(req.getAttribute("selectedAd"));
         req.getRequestDispatcher("/WEB-INF/ads/ad-info.jsp").forward(req,resp);

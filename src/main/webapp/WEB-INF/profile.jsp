@@ -18,7 +18,7 @@
             <div class="col-md-6 card-body">
                 <h5 class="card-title"><c:out value="${ad.title}"/></h5>
                 <p class="card-text"><c:out value="${ad.description}"/></p>
-                <p><strong>Category:</strong> ${ad.category}</p>
+                <p><strong>Category:</strong><c:out value="${ad.category}"/></p>
                 <form action="/edit-ad" method="post">
                     <button type="submit" class="btn btn-primary" name="editAd" value="${ad.id}">Edit</button>
                 </form>

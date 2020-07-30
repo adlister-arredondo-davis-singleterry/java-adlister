@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: jayarredondo
@@ -15,8 +16,15 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
-    <h1>${selectedAd.title}</h1>
-    <p>${selectedAd.description}</p>
+    <div class="m-auto">
+        <div class="card m-auto h-50" style="width: 30rem;">
+            <div class="card-body">
+                <h2 class="card-title"><c:out value="${selectedAd.title}"/></h2>
+                <h4 class="card-subtitle mb-2 text-muted"><strong>Category:</strong> ${selectedAd.category}</h4>
+                <p class="card-text"><c:out value="${selectedAd.description}"/></p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
