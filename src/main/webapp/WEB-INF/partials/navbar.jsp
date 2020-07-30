@@ -7,6 +7,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/ads/create">Create an Ad</a></li>
+            <li><a href="/profile">View Profile</a></li>
             <c:choose>
                 <c:when test="${sessionScope['user'] != null}">
                     <li><a href="/logout">Logout</a></li>

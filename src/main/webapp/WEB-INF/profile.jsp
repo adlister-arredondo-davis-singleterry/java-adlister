@@ -12,7 +12,7 @@
 <div class="container">
     <h1>Welcome, <c:out value="${sessionScope.user.username}"/>!</h1>
     <h3>Here are the ads you have posted so far:</h3>
-    <a href="/user-settings"
+    <a href="/user-settings">Change Account Information</a>
     <c:forEach var="ad" items="${userAds}">
         <div class="card">
             <div class="col-md-6 card-body">
