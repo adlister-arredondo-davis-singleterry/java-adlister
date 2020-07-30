@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/ads">(m)Adlister</a>
+    <a class="navbar-brand text-monospace" href="/ads">(m)Adlister</a>
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <c:if test="${sessionScope['user'] != null}">
-                <li class="nav-item"><a class="nav-link" href="/ads/create">Create an Ad</a></li>
+                <li class="nav-item"><a class="nav-link" href="/ads/create">Create a (m)Ad</a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">View My Profile</a></li>
             </c:if>
             <c:choose>

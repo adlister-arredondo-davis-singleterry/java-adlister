@@ -22,7 +22,6 @@
                 <div class="card-body">
                     <h2 class="card-title"><a href="/ad-info/show?id=${ad.id}"><c:out value="${ad.title}"/></a></h2>
                     <h4 class="card-subtitle mb-2 text-muted"><strong>Category:</strong> ${ad.category}</h4>
-                    <p class="card-text"><c:out value="${ad.description}"/></p>
                 </div>
             </div>
             </div>
