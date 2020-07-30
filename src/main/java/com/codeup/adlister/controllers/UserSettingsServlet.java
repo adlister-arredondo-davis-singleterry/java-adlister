@@ -42,7 +42,7 @@ public class UserSettingsServlet extends HttpServlet {
                     // Get user confirmation before deleting account
                     if (userInput == null) {
                         // User clicked Cancel
-                        response.sendRedirect("/profile");
+                        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
                     } else if (userInput.equalsIgnoreCase("delete")) {
                         // User typed "delete"
                         DaoFactory.getUsersDao().delete(myId);
@@ -58,7 +58,7 @@ public class UserSettingsServlet extends HttpServlet {
                                 "Nothing was changed!\n" +
                                         "The word 'delete' was not entered.",
                                 "Delete Account Failed", JOptionPane.WARNING_MESSAGE);
-                        response.sendRedirect("/profile");
+                        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
                     }
 
                 }
