@@ -65,14 +65,12 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public boolean update(User user) {
-        String query = "UPDATE users SET username = ?, email = ?, password = ?, is_admin = ? WHERE id = ?";
+        String query = "UPDATE users SET email = ?, password = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPassword());
-            stmt.setInt(4, user.getIsAdmin());
-            stmt.setLong(5, user.getId());
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getPassword());
+            stmt.setLong(3, user.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Error updating a user", e);
