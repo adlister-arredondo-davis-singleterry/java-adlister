@@ -18,6 +18,15 @@ public class User {
         setPassword(password); // encrypt before insert
     }
 
+    // this constructor is used when EDITing user settings
+    // can change email and password only
+    public User(long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        setPassword(password); // encrypt before update
+    }
+
     // this constructor creates a User object from a users record (from DB)
     public User(long id, String username, String email, String password, int isAdmin) {
         this.id = id;
