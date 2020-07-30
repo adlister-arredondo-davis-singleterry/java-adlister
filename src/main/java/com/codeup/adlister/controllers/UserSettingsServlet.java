@@ -89,9 +89,8 @@ public class UserSettingsServlet extends HttpServlet {
                     editUser.setPassword(password);
                     DaoFactory.getUsersDao().update(editUser);
                     request.getSession().setAttribute("user", DaoFactory.getUsersDao().findByUsername(username));
-                    // response.sendRedirect("/profile");
                 }
-                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+                response.sendRedirect("/profile");
 
             } else {
                 response.sendRedirect("/profile");
